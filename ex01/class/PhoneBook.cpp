@@ -6,12 +6,12 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:23:01 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/11 19:39:02 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/13 13:49:42 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
-# include <iostream>
+#include <iostream>
 
 PhoneBook::PhoneBook(void)
 {
@@ -33,7 +33,7 @@ void	PhoneBook::AddContact(Contact contact)
 	this->number_contact++;
 }
 
-bool	PhoneBook::RemoveContact(unsigned int id)
+bool	PhoneBook::RemoveContact(short id)
 {
 	Contact	*newContactsList = new Contact[8];
 	int		i = 0;

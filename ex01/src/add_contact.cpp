@@ -6,13 +6,11 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:22:15 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/11 19:39:15 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/13 18:34:15 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
+#include "header.h"
 
 static bool	checkPhoneNumberSize(Contact contact, bool isCountryFormated)
 {
@@ -30,9 +28,10 @@ static bool	checkPhoneNumberFormat(Contact contact)
 	{
 		if (contact.PhoneNumber[i] < '0' && contact.PhoneNumber[i] > '0')
 		{
-			if (i != 0 || contact.PhoneNumber[i] != '+')
+			if (i != 0 || (i == 0 && contact.PhoneNumber[i] != '+'))
 				return (false);
 		}
+		i++;
 	}
 	return (true);
 }
@@ -53,27 +52,29 @@ static bool	isPhoneNumberCorrect(Contact contact)
 	return (res);
 }
 
+// todo check for empty fields
 void	add_contact(PhoneBook *phonebook)
 {
 	Contact	newContact;
 
-	std::cout << "Enter contact first name : ";
-	std::getline(std::cin, newContact.FirstName);
-
-	std::cout << "Enter contact last name : ";
-	std::getline(std::cin, newContact.LastName);
-
-	std::cout << "Enter contact nickname : ";
-	std::getline(std::cin, newContact.Nickname);
-
+	if (!get_input_not_empty("Enter contact first name : ", &newContact.FirstName))
+		return;
+	if (!get_input_not_empty("Enter contact last name : ", &newContact.LastName))
+		return;
+	if (!get_input_not_empty("Enter contact nickname : ", &newContact.Nickname))
+		return;
+	
 	do
 	{
 		std::cout << "Enter contact number : ";
-		std::getline(std::cin, newContact.PhoneNumber);
+		if (!std::getline(std::cin, newContact.PhoneNumber))
+			return;
 	} while (!isPhoneNumberCorrect(newContact));
 
-	std::cout << "Enter contact darkest secret : ";
-	std::getline(std::cin, newContact.DarkestSecret);
+	if (!get_input_not_empty("Enter contact darkest secret : ", &newContact.DarkestSecret))
+		return;
+
+	std::cout << std::endl << "new contact added !";
 
 	phonebook->AddContact(newContact);
 }

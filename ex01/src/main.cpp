@@ -6,25 +6,33 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:28:47 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/11 19:39:27 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/13 18:52:46 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PhoneBook.hpp"
-#include "Contact.hpp"
-#include <iostream>
-#define NO_COMMAND_ERROR "This command doesn't exist, please enter one of these commands : 'ADD', 'SEARCH', 'EXIT'.\n\n"
+#include "header.h"
 
 bool	askCommand(PhoneBook *phonebook)
 {
 	std::string	command;
 
 	std::cout << "Enter command : ";
-	std::getline(std::cin, command);
+	if (!std::getline(std::cin, command))
+	{
+		std::cout << "EXIT" << std::endl;
+		return (true);
+	}
+
 	if (command == "ADD")
-		std::cout << "todo add function" << std::endl;  // function ready todo test
+	{
+		add_contact(phonebook);
+		std::cout << std::endl << std::endl;
+	}
 	else if (command == "SEARCH")
-		std::cout << "todo search function" << std::endl;
+	{
+		search_contact(phonebook);
+		std::cout << std::endl;
+	}
 	else if (command == "EXIT")
 		return (true);
 	else
