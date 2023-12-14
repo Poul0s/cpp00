@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:28:47 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/13 18:52:46 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/14 19:57:21 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	main(void)
 {
 	PhoneBook	phonebook;
 	bool		running;
+
+	std::cout << TITLE << std::endl << std::endl;
 
 	running = true;
 	while (running)

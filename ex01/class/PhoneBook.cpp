@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:23:01 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/13 13:49:42 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/14 22:06:04 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ PhoneBook::PhoneBook(void)
 {
 	this->Contacts = new Contact[8];
 	this->number_contact = 0;
-	return;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	return;
+	delete[] this->Contacts;
 }
 
 void	PhoneBook::AddContact(Contact contact)
@@ -53,6 +52,7 @@ bool	PhoneBook::RemoveContact(short id)
 			}
 			i++;
 		}
+		delete[] this->Contacts;
 		this->Contacts = newContactsList;
 		this->number_contact--;
 		return (true);
