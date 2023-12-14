@@ -6,13 +6,12 @@
 /*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 20:04:14 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/14 21:49:30 by psalame          ###   ########.fr       */
+/*   Updated: 2023/12/14 22:21:11 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
-#include <ctime>
 
 int	Account::_nbAccounts;
 int	Account::_totalAmount;
@@ -151,8 +150,9 @@ static void	display_two_digits(int number)
 void	Account::_displayTimestamp( void )
 {
 	// std::cout << "[19920104_091532] ";
+
 	time_t current_time = time(NULL);
-	std::tm *const pTInfo = std::localtime(&current_time);
+	tm *const pTInfo = localtime(&current_time);
 
 	std::cout << "[";
 	std::cout << pTInfo->tm_year + 1900;
@@ -165,5 +165,4 @@ void	Account::_displayTimestamp( void )
 	display_two_digits(pTInfo->tm_min);
 	display_two_digits(pTInfo->tm_sec);
 	std::cout << "] ";
-
 }
