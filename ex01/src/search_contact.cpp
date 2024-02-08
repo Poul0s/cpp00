@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_contact.cpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:21:49 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/13 18:46:42 by psalame          ###   ########.fr       */
+/*   Updated: 2024/02/08 13:14:35 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,19 +108,22 @@ void	search_contact(PhoneBook *phonebook)
 	
 	print_contacts(phonebook);
 	std::cout << std::endl;
-	contactIndex = -1;
-	do
+	if (phonebook->number_contact > 0)
 	{
-		std::cout << "Enter contact index : ";
-		if (!std::getline(std::cin, contactIndexStr) || contactIndexStr.size() == 0)
-			break;
-		if (!is_only_digit(contactIndexStr))
-			std::cout << "Input must only contain positive numeric value." << std::endl << std::endl;
-		else if (contactIndexStr.size() > 1 || contactIndexStr[0] - '0' >= phonebook->number_contact)
-			std::cout << "Contact non-existent." << std::endl << std::endl;
-		else
-			contactIndex = contactIndexStr[0] - '0';
-	} while (contactIndex == -1);
-	if (contactIndex != -1)
-		print_contact_information(phonebook->Contacts[contactIndex]);
+		contactIndex = -1;
+		do
+		{
+			std::cout << "Enter contact index : ";
+			if (!std::getline(std::cin, contactIndexStr) || contactIndexStr.size() == 0)
+				break;
+			if (!is_only_digit(contactIndexStr))
+				std::cout << "Input must only contain positive numeric value." << std::endl << std::endl;
+			else if (contactIndexStr.size() > 1 || contactIndexStr[0] - '0' >= phonebook->number_contact)
+				std::cout << "Contact non-existent." << std::endl << std::endl;
+			else
+				contactIndex = contactIndexStr[0] - '0';
+		} while (contactIndex == -1);
+		if (contactIndex != -1)
+			print_contact_information(phonebook->Contacts[contactIndex]);
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:28:47 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/14 19:57:21 by psalame          ###   ########.fr       */
+/*   Updated: 2024/02/08 13:12:51 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ bool	askCommand(PhoneBook *phonebook)
 	else if (command == "EXIT")
 		return (true);
 	else
-		std::cout << NO_COMMAND_ERROR;
+	{
+		if (command.size() == 0)
+			std::cout << NO_COMMAND_ERROR;
+		else
+			std::cout << COMMAND_NOT_FOUND_ERROR;
+	}
 	return (false);
 }
 

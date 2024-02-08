@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:44:24 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/14 19:56:31 by psalame          ###   ########.fr       */
+/*   Updated: 2024/02/08 13:11:17 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 # include "Contact.hpp"
 # include "PhoneBook.hpp"
 # include <iostream>
-# define NO_COMMAND_ERROR "This command doesn't exist, please enter one of these commands : 'ADD', 'SEARCH', 'EXIT'.\n\n"
+# define NO_COMMAND_ERROR "You didn't enter command, please enter one of these commands : 'ADD', 'SEARCH', 'EXIT'.\n\n"
+# define COMMAND_NOT_FOUND_ERROR "This command doesn't exist, please enter one of these commands : 'ADD', 'SEARCH', 'EXIT'.\n\n"
 
 void	add_contact(PhoneBook *phonebook);
 void	search_contact(PhoneBook *phonebook);
