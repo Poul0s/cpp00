@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: psalame <psalame@student.42.fr>            +#+  +:+       +#+         #
+#    By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/11 16:30:33 by psalame           #+#    #+#              #
-#    Updated: 2023/12/13 15:30:37 by psalame          ###   ########.fr        #
+#    Updated: 2024/02/08 13:36:14 by psalame          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC		=	src/main.cpp \
 			src/add_contact.cpp \
 			src/search_contact.cpp \
 			class/PhoneBook.cpp \
+			class/Contact.cpp \
 
 OBJ		=	$(addprefix obj/, $(SRC:.cpp=.o))
 

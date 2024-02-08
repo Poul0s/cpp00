@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:23:01 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/14 22:06:04 by psalame          ###   ########.fr       */
+/*   Updated: 2024/02/08 14:04:56 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,14 @@ bool	PhoneBook::RemoveContact(short id)
 		this->number_contact--;
 		return (true);
 	}
+}
+
+Contact	PhoneBook::GetContact(short id)
+{
+	return (this->Contacts[id]);
+}
+
+short	PhoneBook::GetContactsNumber(void)
+{
+	return (this->number_contact);
 }

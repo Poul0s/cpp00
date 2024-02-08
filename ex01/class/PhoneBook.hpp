@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 16:08:54 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/13 13:49:46 by psalame          ###   ########.fr       */
+/*   Updated: 2024/02/08 14:07:18 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ class PhoneBook {
 		~PhoneBook(void);
 		void	AddContact(Contact newContact);
 		bool	RemoveContact(short id);
+		Contact	GetContact(short id);
+		short	GetContactsNumber(void);
+
+	private:
 		Contact	*Contacts;
 		short	number_contact;
 };

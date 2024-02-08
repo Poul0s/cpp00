@@ -3,32 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   add_contact.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: psalame <psalame@student.42.fr>            +#+  +:+       +#+        */
+/*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 17:22:15 by psalame           #+#    #+#             */
-/*   Updated: 2023/12/14 19:55:31 by psalame          ###   ########.fr       */
+/*   Updated: 2024/02/08 13:44:28 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-static bool	checkPhoneNumberSize(Contact contact, bool isCountryFormated)
+static bool	checkPhoneNumberSize(std::string number, bool isCountryFormated)
 {
 	if (isCountryFormated)
-		return (contact.PhoneNumber.size() >= 11);
+		return (number.size() >= 11);
 	else
-		return (contact.PhoneNumber.size() == 10);
+		return (number.size() == 10);
 }
 
-static bool	checkPhoneNumberFormat(Contact contact)
+static bool	checkPhoneNumberFormat(std::string number)
 {
 	size_t	i = 0;
 	
-	while (i < contact.PhoneNumber.size())
+	while (i < number.size())
 	{
-		if (contact.PhoneNumber[i] < '0' && contact.PhoneNumber[i] > '0')
+		if (number[i] < '0' && number[i] > '0')
 		{
-			if (i != 0 || (i == 0 && contact.PhoneNumber[i] != '+'))
+			if (i != 0 || (i == 0 && number[i] != '+'))
 				return (false);
 		}
 		i++;
@@ -36,45 +36,53 @@ static bool	checkPhoneNumberFormat(Contact contact)
 	return (true);
 }
 
-static bool	isPhoneNumberCorrect(Contact contact)
+static bool	isPhoneNumberCorrect(std::string number)
 {
 	bool	res = true;
 	bool	isCountryFormated = false;
 
-	if (contact.PhoneNumber[0] == '+')
+	if (number[0] == '+')
 		isCountryFormated = true;
-	res = checkPhoneNumberSize(contact, isCountryFormated);
+	res = checkPhoneNumberSize(number, isCountryFormated);
 	if (res)
-		res = checkPhoneNumberFormat(contact);
+		res = checkPhoneNumberFormat(number);
 
 	if (!res)
 		std::cout << "Phone number must be in format '0123456789' or '+33123456789'." << std::endl << std::endl;
 	return (res);
 }
 
-// todo check for empty fields
 void	add_contact(PhoneBook *phonebook)
 {
-	Contact	newContact;
+	Contact		newContact;
+	std::string	value;
 
-	if (!get_input_not_empty("Enter contact first name : ", &newContact.FirstName))
+	if (!get_input_not_empty("Enter contact first name : ", value))
 		return;
-	if (!get_input_not_empty("Enter contact last name : ", &newContact.LastName))
+	else
+		newContact.SetFirstName(value);
+	if (!get_input_not_empty("Enter contact last name : ", value))
 		return;
-	if (!get_input_not_empty("Enter contact nickname : ", &newContact.Nickname))
+	else
+		newContact.SetLastName(value);
+	if (!get_input_not_empty("Enter contact nickname : ", value))
 		return;
+	else
+		newContact.SetNickname(value);
 	
 	do
 	{
 		std::cout << "Enter contact number : ";
-		if (!std::getline(std::cin, newContact.PhoneNumber))
+		if (!std::getline(std::cin, value))
 			return;
-	} while (!isPhoneNumberCorrect(newContact));
+	} while (!isPhoneNumberCorrect(value));
+	newContact.SetPhoneNumber(value);
 
-	if (!get_input_not_empty("Enter contact darkest secret : ", &newContact.DarkestSecret))
+	if (!get_input_not_empty("Enter contact darkest secret : ", value))
 		return;
+	else
+		newContact.SetDarkestSecret(value);
 
 	std::cout << std::endl << "new contact added !";
-
 	phonebook->AddContact(newContact);
 }

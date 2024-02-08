@@ -6,7 +6,7 @@
 /*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:21:49 by psalame           #+#    #+#             */
-/*   Updated: 2024/02/08 13:14:35 by psalame          ###   ########.fr       */
+/*   Updated: 2024/02/08 14:06:45 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,16 +62,16 @@ static void	print_contacts(PhoneBook *phonebook)
 	print_rep(' ', 10);
 	std::cout << '|' << std::endl;
 
-	for (i = 0; i < phonebook->number_contact; i++)
+	for (i = 0; i < phonebook->GetContactsNumber(); i++)
 	{
 		std::cout << '|';
 		std::cout << i << "         ";
 		std::cout << '|';
-		print_truncate(phonebook->Contacts[i].FirstName, 10);
+		print_truncate(phonebook->GetContact(i).GetFirstName(), 10);
 		std::cout << '|';
-		print_truncate(phonebook->Contacts[i].LastName, 10);
+		print_truncate(phonebook->GetContact(i).GetLastName(), 10);
 		std::cout << '|';
-		print_truncate(phonebook->Contacts[i].Nickname, 10);
+		print_truncate(phonebook->GetContact(i).GetNickname(), 10);
 		std::cout << '|' << std::endl;
 	}
 	print_rep('-', 10 * 4 + 5);
@@ -94,11 +94,11 @@ static bool	is_only_digit(std::string str)
 
 static void	print_contact_information(Contact contact)
 {
-	std::cout << "First name : " << contact.FirstName << std::endl;
-	std::cout << "Last name : " << contact.LastName << std::endl;
-	std::cout << "Nickname : " << contact.Nickname << std::endl;
-	std::cout << "Phone Number : " << contact.PhoneNumber << std::endl;
-	std::cout << "Darkest secret : " << contact.DarkestSecret << std::endl;
+	std::cout << "First name : " << contact.GetFirstName() << std::endl;
+	std::cout << "Last name : " << contact.GetLastName() << std::endl;
+	std::cout << "Nickname : " << contact.GetNickname() << std::endl;
+	std::cout << "Phone Number : " << contact.GetPhoneNumber() << std::endl;
+	std::cout << "Darkest secret : " << contact.GetDarkestSecret() << std::endl;
 }
 
 void	search_contact(PhoneBook *phonebook)
@@ -108,7 +108,7 @@ void	search_contact(PhoneBook *phonebook)
 	
 	print_contacts(phonebook);
 	std::cout << std::endl;
-	if (phonebook->number_contact > 0)
+	if (phonebook->GetContactsNumber() > 0)
 	{
 		contactIndex = -1;
 		do
@@ -118,12 +118,12 @@ void	search_contact(PhoneBook *phonebook)
 				break;
 			if (!is_only_digit(contactIndexStr))
 				std::cout << "Input must only contain positive numeric value." << std::endl << std::endl;
-			else if (contactIndexStr.size() > 1 || contactIndexStr[0] - '0' >= phonebook->number_contact)
+			else if (contactIndexStr.size() > 1 || contactIndexStr[0] - '0' >= phonebook->GetContactsNumber())
 				std::cout << "Contact non-existent." << std::endl << std::endl;
 			else
 				contactIndex = contactIndexStr[0] - '0';
 		} while (contactIndex == -1);
 		if (contactIndex != -1)
-			print_contact_information(phonebook->Contacts[contactIndex]);
+			print_contact_information(phonebook->GetContact(contactIndex));
 	}
 }
