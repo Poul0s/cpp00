@@ -19,13 +19,13 @@ class PhoneBook {
 		PhoneBook(void);
 		~PhoneBook(void);
 		void	AddContact(Contact newContact);
-		bool	RemoveContact(short id);
 		Contact	GetContact(short id);
 		short	GetContactsNumber(void);
 
 	private:
-		Contact	*Contacts;
-		short	number_contact;
+		Contact	_Contacts[8];
+		short	_numberContact;
+		short	_contactAddIndex;
 };
 
 #endif

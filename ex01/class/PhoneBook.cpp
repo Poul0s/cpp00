@@ -12,59 +12,32 @@
 
 #include "PhoneBook.hpp"
 #include <iostream>
+#include <sstream>
 
 PhoneBook::PhoneBook(void)
 {
-	this->Contacts = new Contact[8];
-	this->number_contact = 0;
+	this->_numberContact = 0;
+	this->_contactAddIndex = 0;
 }
 
 PhoneBook::~PhoneBook(void)
 {
-	delete[] this->Contacts;
 }
 
 void	PhoneBook::AddContact(Contact contact)
 {
-	if (this->number_contact == 8)
-		this->RemoveContact(0);
-	this->Contacts[this->number_contact] = contact;
-	this->number_contact++;
-}
-
-bool	PhoneBook::RemoveContact(short id)
-{
-	Contact	*newContactsList = new Contact[8];
-	int		i = 0;
-	
-	if (id >= this->number_contact)
-		return (false);
-	else
-	{
-		while (i < this->number_contact)
-		{
-			if (i != id)
-			{
-				if (i > id)
-					newContactsList[i - 1] = this->Contacts[i];
-				else
-					newContactsList[i] = this->Contacts[i];
-			}
-			i++;
-		}
-		delete[] this->Contacts;
-		this->Contacts = newContactsList;
-		this->number_contact--;
-		return (true);
-	}
+	this->_Contacts[this->_contactAddIndex] = contact;
+	if (this->_numberContact < 8)
+		this->_numberContact++;
+	this->_contactAddIndex = (this->_contactAddIndex + 1) % 8;
 }
 
 Contact	PhoneBook::GetContact(short id)
 {
-	return (this->Contacts[id]);
+	return (this->_Contacts[id]);
 }
 
 short	PhoneBook::GetContactsNumber(void)
 {
-	return (this->number_contact);
+	return (this->_numberContact);
 }

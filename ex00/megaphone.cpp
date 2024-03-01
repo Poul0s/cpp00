@@ -13,7 +13,7 @@
 #include <iostream>
 #include <string>
 
-void	ft_printupper(std::string str)
+void	PrintUpper(std::string str)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	main(int ac, char **av)
 	if (ac == 1)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *";
 	for (i = 1; i < ac; i++) 
-		ft_printupper(av[i]);
+		PrintUpper(av[i]);
 	std::cout << "\n";
 	return (0);
 }
