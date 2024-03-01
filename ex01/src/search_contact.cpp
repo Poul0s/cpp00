@@ -6,33 +6,36 @@
 /*   By: psalame <psalame@student.42angouleme.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 14:21:49 by psalame           #+#    #+#             */
-/*   Updated: 2024/02/08 14:06:45 by psalame          ###   ########.fr       */
+/*   Updated: 2024/03/01 09:25:19 by psalame          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+#include <iomanip>
+#include <sstream>
 
 static void	print_truncate(std::string value, unsigned long max)
 {
-	unsigned long	i;
+	if (value.size() > max)
+		std::cout << value.substr(0, max - 1) << ".";
+	else
+		std::cout << std::setw(max) << value;
+}
 
-	for (i = 0; i < max; i++)
-	{
-		if (i >= value.size())
-			std::cout << " ";
-		else if (i == max - 1 && value.size() > max)
-			std::cout << ".";
-		else
-			std::cout << value[i];
-	}
+static void	print_truncate(int value, unsigned long max)
+{
+	std::string str;
+	std::stringstream str_stream;
+
+	str_stream << value;
+	str = str_stream.str();
+	print_truncate(str, max);
 }
 
 static void print_rep(char chr, int rep)
 {
-	int	i;
-
-	for (i = 0; i < rep; i++)
-		std::cout << chr;
+	std::cout << std::setw(rep) << std::setfill(chr) << "";
+	std::cout << std::setfill(' ');
 }
 
 static void	print_contacts(PhoneBook *phonebook)
@@ -65,7 +68,7 @@ static void	print_contacts(PhoneBook *phonebook)
 	for (i = 0; i < phonebook->GetContactsNumber(); i++)
 	{
 		std::cout << '|';
-		std::cout << i << "         ";
+		print_truncate(i, 10);
 		std::cout << '|';
 		print_truncate(phonebook->GetContact(i).GetFirstName(), 10);
 		std::cout << '|';
